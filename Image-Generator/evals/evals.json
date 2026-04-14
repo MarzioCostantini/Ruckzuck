@@ -1,0 +1,23 @@
+{
+  "skill_name": "image-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Ich möchte einen Scroll-Stop Content für meine Sony WH-1000XM5 Kopfhörer erstellen. Kannst du mir die 3 Prompts dafür generieren?",
+      "expected_output": "3 koordinierte Prompts: (A) Clean Hero Shot der Kopfhörer auf weißem Hintergrund, (B) Explodierte Ansicht aller Einzelteile schwebend auf weißem Hintergrund, (C) Video-Transition-Prompt von zusammengebaut zu zerlegt. Dazu eine HTML-Seite mit Tabs und Copy-Buttons.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "image generator — ich brauche prompts für meine neue Nike Air Max Sneaker, soll richtig fett aussehen für Instagram",
+      "expected_output": "3 Prompts für Sneaker: (A) Hero Shot des Schuhs auf Weiß mit Detail-Beschreibung von Sohle, Mesh, Leder etc., (B) Explodierte Ansicht mit allen Schuh-Komponenten (Außensohle, Mittelsohle, Einlegesohle, Obermaterial, Schnürsenkel, usw.), (C) Video-Transition-Prompt. HTML-Seite wird generiert und geöffnet.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Kannst du mir scroll-stop prompts für einen Smoothie machen? Ich verkaufe grüne Detox-Smoothies und will das für meine Social Media Werbung nutzen.",
+      "expected_output": "Da es sich um Food/Beverage handelt, wird der Explosion-Stil verwendet: (A) Hero Shot des fertigen grünen Smoothies im Glas auf Weiß, (B) Explosion-Shot mit allen Zutaten fliegend (Spinat, Gurke, Apfel, Ingwer, Eiswürfel, Glas-Scherben, Flüssigkeitsspritzer), (C) Video-Transition mit Freeze-Frame-Stil. HTML-Seite wird generiert.",
+      "files": []
+    }
+  ]
+}
