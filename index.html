@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Umzug Ruck Zuck – Ihr Umzugsunternehmen in München</title>
+  <link rel="icon" type="image/png" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -180,22 +181,12 @@
     .nav-logo-icon {
       width: 34px;
       height: 34px;
-      background: var(--primary);
       border-radius: var(--radius);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-    }
-
-    .nav-logo-icon svg {
-      width: 17px;
-      height: 17px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      overflow: hidden;
     }
 
     .nav-logo-name {
@@ -1808,19 +1799,11 @@
     .footer-logo-icon {
       width: 30px;
       height: 30px;
-      background: var(--primary);
       border-radius: var(--radius);
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .footer-logo-icon svg {
-      width: 15px;
-      height: 15px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.5;
+      overflow: hidden;
     }
 
     .footer-logo-name {
@@ -2011,10 +1994,356 @@
         align-items: flex-start;
       }
     }
+
+
+    /* ─── PASSWORD OVERLAY ─────────────────────────────────────────── */
+    #pw-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    #pw-overlay .pw-logo {
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #pw-overlay h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      text-align: center;
+    }
+
+    #pw-overlay p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: -12px 0 0;
+      text-align: center;
+    }
+
+    #pw-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    #pw-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-family: var(--font-body);
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-lg);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #pw-input:focus {
+      border-color: var(--primary);
+    }
+
+    #pw-input.error {
+      border-color: #ef4444;
+      animation: pw-shake 0.35s ease;
+    }
+
+    @keyframes pw-shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      60% { transform: translateX(6px); }
+      80% { transform: translateX(-3px); }
+    }
+
+    #pw-submit {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: var(--font-head);
+      border: none;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    #pw-submit:hover {
+      background: #0099d6;
+      transform: translateY(-1px);
+    }
+
+    #pw-error {
+      color: #ef4444;
+      font-size: 13px;
+      text-align: center;
+      min-height: 18px;
+    }
+
+    /* ─── GOOGLE BEWERTUNGEN ───────────────────────────────────────── */
+    #bewertungen {
+      background: var(--bg-soft);
+      padding: 80px 24px 0;
+    }
+
+    .reviews-header-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 8px;
+    }
+
+    .reviews-google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+    }
+
+    .reviews-google-badge svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .reviews-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .reviews-big-score {
+      font-family: var(--font-head);
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1;
+      color: #000;
+    }
+
+    .reviews-stars-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .reviews-stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .reviews-stars svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .reviews-count {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Reviews grid */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 48px auto 0;
+      padding-bottom: 80px;
+    }
+
+    .review-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .rc-stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .rc-stars svg {
+      width: 16px;
+      height: 16px;
+      fill: #FBBC05;
+    }
+
+    .rc-quote {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .rc-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .rc-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .rc-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 14px;
+      color: #000;
+      line-height: 1.2;
+    }
+
+    .rc-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .rc-google {
+      width: 16px;
+      height: 16px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FAQ Accordion ──────────────────────────────────────── */
+    #faq {
+      background: #fff;
+      padding: 80px 24px;
+    }
+
+    .faq-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 20px 24px;
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 15px;
+      color: #000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      line-height: 1.4;
+    }
+
+    .faq-question:hover { background: var(--bg-soft); }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 24px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 20px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
   </style>
 </head>
 
 <body>
+
+  <!-- ─── PASSWORD OVERLAY ───────────────────────────────────────── -->
+  <div id="pw-overlay">
+    <div class="pw-logo">
+      <img src="logo.png" alt="Umzug Ruck-Zuck Logo" style="width:48px;height:48px;object-fit:contain;display:block;" />
+    </div>
+    <h2>Umzug Ruck-Zuck</h2>
+    <p>Bitte Passwort eingeben, um fortzufahren.</p>
+    <form id="pw-form" onsubmit="checkPassword(event)">
+      <input id="pw-input" type="password" placeholder="Passwort" autocomplete="current-password" autofocus />
+      <button id="pw-submit" type="submit">Weiter</button>
+      <div id="pw-error"></div>
+    </form>
+  </div>
 
   <!-- ─── HEADER / NAVIGATION ────────────────────────────────────── -->
   <header id="main-header">
@@ -2023,9 +2352,7 @@
         <!-- Left: Logo -->
         <a href="#hero" class="nav-logo">
           <div class="nav-logo-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
+            <img src="logo.png" alt="Umzug Ruck-Zuck Logo" style="width:100%;height:100%;object-fit:contain;display:block;" />
           </div>
           <span class="nav-logo-name">Ruck Zuck</span>
         </a>
@@ -2385,6 +2712,251 @@
 
   <div class="section-divider"></div>
 
+  <!-- ─── GOOGLE BEWERTUNGEN ──────────────────────────────────────── -->
+  <!-- SVG sprite -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="rz-star" viewBox="0 0 20 20">
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.54-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.05 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z"/>
+    </symbol>
+    <symbol id="rz-glogo" viewBox="0 0 24 24" fill="none">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.83z" fill="#FBBC05"/>
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.83C6.71 7.31 9.14 5.38 12 5.38z" fill="#EA4335"/>
+    </symbol>
+  </svg>
+
+  <!-- GOOGLE BEWERTUNGEN -->
+  <section id="bewertungen">
+    <div class="reviews-header-wrap">
+      <div class="section-header">
+        <div class="reviews-google-badge">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.83z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.83C6.71 7.31 9.14 5.38 12 5.38z" fill="#EA4335"/></svg>
+          Google Bewertungen
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">Was unsere Kunden sagen</h2>
+        <p class="section-subtitle reveal reveal-delay-2">Echte Erfahrungen von echten Kunden – direkt von Google.</p>
+        <div class="reviews-score-row reveal reveal-delay-2">
+          <div class="reviews-big-score">5,0</div>
+          <div class="reviews-stars-wrap">
+            <div class="reviews-stars">
+              <svg viewBox="0 0 20 20" fill="#FBBC05"><use href="#rz-star"/></svg>
+              <svg viewBox="0 0 20 20" fill="#FBBC05"><use href="#rz-star"/></svg>
+              <svg viewBox="0 0 20 20" fill="#FBBC05"><use href="#rz-star"/></svg>
+              <svg viewBox="0 0 20 20" fill="#FBBC05"><use href="#rz-star"/></svg>
+              <svg viewBox="0 0 20 20" fill="#FBBC05"><use href="#rz-star"/></svg>
+            </div>
+            <div class="reviews-count">Basierend auf 60+ Bewertungen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Umzug von Neuhausen nach Moosach war super! Die vier Männer waren super pünktlich, mega schnell, und haben selbst unsere massiven &amp; klobigen Holzschränke problemlos ins Untergeschoss bekommen. Bereits der zweite Umzug mit ihnen!</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">BA</div>
+              <div>
+                <div class="rc-name">Basti</div>
+                <div class="rc-meta">vor 2 Monaten</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Wir haben vor kurzem zwei Wohnungen mit den starken, netten Männern des Ruck-Zuck Unternehmens gemacht und beide verliefen unglaublich gut. Der Name ist Programm! Super pünktlich, schnell in ihrer Arbeit – alles ein- und ausgeladen.</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">AR</div>
+              <div>
+                <div class="rc-name">Anja Römuß</div>
+                <div class="rc-meta">vor 5 Monaten</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Zuverlässig, freundlich und schnell. Lieben Dank an das Team von Umzug Ruck-Zuck! Möbel sorgfältig mit Stretchfolie eingepackt, beeindruckende Schnelligkeit bei gleichzeitiger Lockerheit – für einen sehr fairen Preis.</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">TH</div>
+              <div>
+                <div class="rc-name">Tim Woody Haake</div>
+                <div class="rc-meta">vor 6 Monaten · Local Guide</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Das ist mein zweiter Umzug mit dem Unternehmen. Die Männer arbeiten zügig, gewissenhaft und umsichtig. Sie waren sehr freundlich und haben den Umzug zu einem schönen Tag gemacht. Außerdem sind sie preislich unschlagbar!!</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">RW</div>
+              <div>
+                <div class="rc-name">Ruth Wohland</div>
+                <div class="rc-meta">vor 6 Monaten</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Hoch professionell, super freundlich, mega zuverlässig und einfach Ruck Zuck! Umzug Ruck-Zuck hat den Umzug für meine Mutter von Eching perfekt organisiert und durchgeführt.</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">MF</div>
+              <div>
+                <div class="rc-name">Michael Freitag</div>
+                <div class="rc-meta">vor 8 Monaten</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Ein ganz großes DANKE für diesen hervorragenden Umzug! Ich kann diese Umzugsfirma voll und ganz empfehlen – von der Anfrage bis zur Durchführung lief alles top, zuverlässig und professionell!!!</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">LM</div>
+              <div>
+                <div class="rc-name">L. Maria</div>
+                <div class="rc-meta">vor 9 Monaten</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Neulich hatten wir einen Umzug innerhalb München bei Ruck-Zuck. Sehr zügig und professionell. Was uns besonders gefiel ist, dass die Kollegen sehr sorgsam mit unseren Möbeln umgegangen sind. Sie kamen 15 Minuten früher.</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">HT</div>
+              <div>
+                <div class="rc-name">Ha Vinh Tran</div>
+                <div class="rc-meta">vor 10 Monaten</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Ich kann ruck-zuck Umzugsservice nur empfehlen – wir haben mittlerweile den dritten Umzug mit ihnen gemacht und alles ist perfekt und fair abgelaufen. Alles ist heil geblieben, freundliche und pünktliche Mitarbeiter.</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">AT</div>
+              <div>
+                <div class="rc-name">Angela Tiefenbrucker</div>
+                <div class="rc-meta">vor 11 Monaten</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Ich habe mit dem Umzugsservice „Ruck-Zuck“ eine sehr positive Erfahrung gemacht. Schnell, unkompliziert, professionell, freundlich und dazu faire Preise. Für mich perfekt!</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">EK</div>
+              <div>
+                <div class="rc-name">Evelyn Kupka</div>
+                <div class="rc-meta">vor 1 Jahr</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="rc-stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#rz-star" fill="#FBBC05"/></svg></div>
+            <blockquote class="rc-quote">Hervorragende Arbeit, unkomplizierte Kommunikation und ein sehr guter Preis. Wir waren sehr zufrieden mit dem Umzug. Die Umzugshelfer waren freundlich und professionell. Alles wurde sicher verpackt und verstaut.</blockquote>
+            <div class="rc-author">
+              <div class="rc-avatar">PS</div>
+              <div>
+                <div class="rc-name">Philipp Sackl-O'Neill</div>
+                <div class="rc-meta">vor 1 Jahr</div>
+              </div>
+              <svg class="rc-google" viewBox="0 0 24 24" aria-hidden="true"><use href="#rz-glogo"/></svg>
+            </div>
+          </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-inner">
+      <div class="section-header">
+        <h2 class="section-title reveal">Häufig gestellte Fragen</h2>
+        <p class="section-subtitle reveal reveal-delay-1">Alles, was Sie vor Ihrem Umzug wissen möchten.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" type="button">Sind Ihre Preise Netto- oder Bruttopreise? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Alle angegebenen Preise verstehen sich inkl. 19 % MwSt. – keine versteckten Kosten.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Gibt es einen Aufpreis am Samstag? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Nein, wir führen Umzüge auch samstags ohne zusätzliche Aufschläge durch.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Wie funktioniert der Frühbucherrabatt? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Bei Buchung 30 Tage im Voraus erhalten Sie 5 % Rabatt, bei 60 Tagen im Voraus sogar 10 %.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Was ist im Preis enthalten? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Je nach Paket sind Umzugsdecken, Spanngurte und eine Versicherung bis 2 Mio. Euro inklusive.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Wie wird die Umzugszeit berechnet? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Die Zeit beginnt mit dem vereinbarten Leistungsstart und endet nach Abschluss aller Arbeiten. Auf Wunsch erläutern wir dies transparent im Vorfeld.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Was bedeutet „Lastfahrt/Spritgeld“? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Es handelt sich um eine Pauschale für Kraftstoff und Betriebskosten der Fahrzeuge für Ihren Umzug.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Was kostet eine zusätzliche Stunde? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Die Kosten variieren je nach Paket. Beim 2-Personen-Paket berechnen wir 110 € pro Zusatzstunde.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Bieten Sie Festpreisangebote an? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Ja, nach einer virtuellen oder persönlichen Besichtigung erstellen wir gerne ein verbindliches Festpreisangebot.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Kümmern Sie sich um Halteverbotszone in München? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Ja, wir übernehmen die Beantragung und Aufstellung für 115 € inkl. Gebühren.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Helfen Sie auch beim Ab- und Aufbau von Möbeln? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Ja, Demontage, Transport und Remontage sind auf Wunsch Teil unseres Leistungsumfangs.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Stellen Sie Verpackungsmaterial? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Ja, wir bieten Kartons, Schutzfolie, Seidenpapier und weiteres Packmaterial an.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Bieten Sie Entrümpelung und Entsorgung an? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Ja, wir räumen auf und entsorgen fachgerecht – auf Wunsch auch besenrein.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Sind Sie nur in München tätig? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Wir führen Umzüge in München und Umgebung durch. Bundesweite Umzüge sind auf Anfrage möglich.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">Wie schnell kann ich einen Umzugstermin buchen? <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p>Je nach Verfügbarkeit sind Expressumzüge kurzfristig möglich. Kontaktieren Sie uns einfach.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
   <!-- ─── FOOTER / KONTAKT ─────────────────────────────────────────── -->
   <footer id="footer-kontakt">
     <div class="footer-aurora"></div>
@@ -2509,9 +3081,7 @@
       <div class="footer-bottom-inner">
         <a href="#hero" class="footer-logo">
           <div class="footer-logo-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
+            <img src="logo.png" alt="Umzug Ruck-Zuck Logo" style="width:100%;height:100%;object-fit:contain;display:block;" />
           </div>
           <span class="footer-logo-name">Umzug Ruck Zuck</span>
         </a>
@@ -2730,6 +3300,48 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    /* ── Password Protection ─────────────────────────────────────── */
+    (function () {
+      const overlay = document.getElementById('pw-overlay');
+      const input = document.getElementById('pw-input');
+      const errEl = document.getElementById('pw-error');
+      const SESSION_KEY = 'rz_auth';
+
+      if (sessionStorage.getItem(SESSION_KEY) === '1') {
+        overlay.style.display = 'none';
+        return;
+      }
+
+      window.checkPassword = function (e) {
+        e.preventDefault();
+        if (input.value === 'ruckzuck') {
+          sessionStorage.setItem(SESSION_KEY, '1');
+          overlay.style.transition = 'opacity 0.4s ease';
+          overlay.style.opacity = '0';
+          setTimeout(() => overlay.style.display = 'none', 400);
+        } else {
+          errEl.textContent = 'Falsches Passwort. Bitte erneut versuchen.';
+          input.classList.add('error');
+          input.value = '';
+          setTimeout(() => input.classList.remove('error'), 500);
+        }
+      };
+    })();
+
+    /* ── FAQ Accordion ───────────────────────────────────────────── */
+    (function () {
+      document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.faq-item');
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(function (el) {
+            el.classList.remove('open');
+          });
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+    })();
 
     /* ── Form ─────────────────────────────────────────────────── */
     function handleFormSubmit(e) {
