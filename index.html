@@ -823,43 +823,73 @@
       background: var(--bg);
     }
 
-    .steps-pin-wrap {
-      height: 100vh;
+    /* ── Steps Timeline ──────────────────────────────────────────── */
+    .steps-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 60px auto 0;
+    }
+
+    .steps-line-track {
+      position: absolute;
+      left: 27px;
+      top: 28px;
+      bottom: 28px;
+      width: 2px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .steps-line-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+
+    .step-item:last-child { margin-bottom: 0; }
+
+    .step-dot {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 60px;
-    }
-
-    .steps-stack {
+      flex-shrink: 0;
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-muted);
+      transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
       position: relative;
-      width: 100%;
-      max-width: 920px;
-      margin: 0 auto;
-      height: 260px;
-      padding: 0 20px;
+      z-index: 1;
     }
 
-    .steps-stack .step-card {
-      position: absolute;
-      width: calc(100% - 40px);
-      left: 20px;
-      top: 0;
-      will-change: transform, opacity;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.10), 0 3px 10px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(0, 0, 0, 0.07);
+    .step-dot.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 0 0 5px rgba(0, 173, 239, 0.14);
     }
 
-    .steps-stack .step-card::before {
-      transform: scaleX(1);
+    .step-item .step-card {
+      flex: 1;
     }
 
-    .steps-stack .step-card:nth-child(1) { z-index: 1; }
-    .steps-stack .step-card:nth-child(2) { z-index: 2; }
-    .steps-stack .step-card:nth-child(3) { z-index: 3; }
-    .steps-stack .step-card:nth-child(4) { z-index: 4; }
+    .step-item .step-number { display: none; }
 
     .step-card {
       background: var(--bg-soft);
@@ -1996,24 +2026,14 @@
     }
 
     @media (max-width: 600px) {
-      .steps-pin-wrap {
-        height: auto;
-        margin-top: 32px;
-      }
+      .steps-line-track { display: none; }
 
-      .steps-stack {
-        height: auto;
-        padding: 0;
-      }
+      .step-item { gap: 16px; }
 
-      .steps-stack .step-card {
-        position: relative;
-        width: 100%;
-        left: 0;
-        opacity: 1 !important;
-        transform: none !important;
-        margin-bottom: 16px;
-        box-shadow: var(--shadow-md);
+      .step-dot {
+        width: 44px;
+        height: 44px;
+        font-size: 12px;
       }
 
       .services-grid {
@@ -2459,56 +2479,72 @@
       <p class="section-subtitle reveal reveal-delay-2">Einfach, transparent und stressfrei – so läuft Ihr Umzug mit uns
         ab.</p>
     </div>
-    <div class="steps-pin-wrap">
-      <div class="steps-stack">
-          <div class="step-card" id="step-card-1">
-            <div class="step-number">01</div>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
-            </div>
-            <h3>Wir kommen zu Ihnen</h3>
-            <p>Kostenlose Vor-Ort-Besichtigung. Transparentes Festpreisangebot ohne versteckte Kosten.</p>
+    <div class="steps-timeline">
+      <div class="steps-line-track">
+        <div class="steps-line-fill" id="steps-line-fill"></div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-1">01</div>
+        <div class="step-card" id="step-card-1">
+          <div class="step-number">01</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
           </div>
-          <div class="step-card" id="step-card-2">
-            <div class="step-number">02</div>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                <line x1="12" y1="22.08" x2="12" y2="12" />
-              </svg>
-            </div>
-            <h3>Professionelles Verpacken</h3>
-            <p>Kartons, Kleiderkisten, Stretchfolie – alles aus einer Hand. Sicher verpackt, sicher transportiert.</p>
-          </div>
-          <div class="step-card" id="step-card-3">
-            <div class="step-number">03</div>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24">
-                <rect x="1" y="3" width="15" height="13" rx="1" />
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                <circle cx="5.5" cy="18.5" r="2.5" />
-                <circle cx="18.5" cy="18.5" r="2.5" />
-              </svg>
-            </div>
-            <h3>Sicherer Transport</h3>
-            <p>Moderne Fahrzeuge, geschultes Personal. Pünktlich und unbeschadet an Ihr Ziel.</p>
-          </div>
-          <div class="step-card" id="step-card-4">
-            <div class="step-number">04</div>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-            <h3>Aufbau & Einzug</h3>
-            <p>Möbel aufbauen, einräumen, besenrein übergeben. Sie ziehen direkt ein – wir machen alles fertig.</p>
-          </div>
+          <h3>Wir kommen zu Ihnen</h3>
+          <p>Kostenlose Vor-Ort-Besichtigung. Transparentes Festpreisangebot ohne versteckte Kosten.</p>
         </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-2">02</div>
+        <div class="step-card" id="step-card-2">
+          <div class="step-number">02</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg>
+          </div>
+          <h3>Professionelles Verpacken</h3>
+          <p>Kartons, Kleiderkisten, Stretchfolie – alles aus einer Hand. Sicher verpackt, sicher transportiert.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-3">03</div>
+        <div class="step-card" id="step-card-3">
+          <div class="step-number">03</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="1" y="3" width="15" height="13" rx="1" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+          </div>
+          <h3>Sicherer Transport</h3>
+          <p>Moderne Fahrzeuge, geschultes Personal. Pünktlich und unbeschadet an Ihr Ziel.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-4">04</div>
+        <div class="step-card" id="step-card-4">
+          <div class="step-number">04</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <h3>Aufbau & Einzug</h3>
+          <p>Möbel aufbauen, einräumen, besenrein übergeben. Sie ziehen direkt ein – wir machen alles fertig.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3539,40 +3575,43 @@
       gsap.ticker.lagSmoothing(0);
       lenis.on('scroll', ScrollTrigger.update);
 
-      /* ── Step Cards Stacking Animation ──────────────────────────── */
-      const stepsPinWrap = document.querySelector('.steps-pin-wrap');
-      if (stepsPinWrap && window.innerWidth > 600) {
-        const sc = [
-          document.getElementById('step-card-1'),
-          document.getElementById('step-card-2'),
-          document.getElementById('step-card-3'),
-          document.getElementById('step-card-4'),
-        ];
+      /* ── Steps Timeline Animation ────────────────────────────────── */
+      const stepsTimeline = document.querySelector('.steps-timeline');
+      if (stepsTimeline) {
+        const lineFill = document.getElementById('steps-line-fill');
 
-        gsap.set(sc, { y: 120, opacity: 0 });
-
-        const stackTl = gsap.timeline({
+        // Linie füllt sich beim Scrollen durch die Sektion
+        gsap.to(lineFill, {
+          height: '100%',
+          ease: 'none',
           scrollTrigger: {
-            trigger: stepsPinWrap,
-            start: 'top top',
-            end: '+=2400',
-            pin: true,
-            scrub: 1.2,
-            anticipatePin: 1,
+            trigger: stepsTimeline,
+            start: 'top 70%',
+            end: 'bottom 55%',
+            scrub: 0.6,
           }
         });
 
-        stackTl
-          .to(sc[0], { y: 0, opacity: 1, duration: 1, ease: 'none' }, 0)
-          .to(sc[0], { y: -22, scale: 0.97, duration: 1, ease: 'none' }, 1)
-          .to(sc[1], { y: 0, opacity: 1, duration: 1, ease: 'none' }, 1)
-          .to(sc[0], { y: -44, scale: 0.94, duration: 1, ease: 'none' }, 2)
-          .to(sc[1], { y: -22, scale: 0.97, duration: 1, ease: 'none' }, 2)
-          .to(sc[2], { y: 0, opacity: 1, duration: 1, ease: 'none' }, 2)
-          .to(sc[0], { y: -66, scale: 0.91, duration: 1, ease: 'none' }, 3)
-          .to(sc[1], { y: -44, scale: 0.94, duration: 1, ease: 'none' }, 3)
-          .to(sc[2], { y: -22, scale: 0.97, duration: 1, ease: 'none' }, 3)
-          .to(sc[3], { y: 0, opacity: 1, duration: 1, ease: 'none' }, 3);
+        // Dots leuchten auf wenn sie ins Bild scrollen
+        document.querySelectorAll('.step-dot').forEach(dot => {
+          ScrollTrigger.create({
+            trigger: dot,
+            start: 'top 68%',
+            onEnter: () => dot.classList.add('active'),
+            onLeaveBack: () => dot.classList.remove('active'),
+          });
+        });
+
+        // Karten gleiten von rechts rein
+        document.querySelectorAll('.step-item .step-card').forEach(card => {
+          gsap.fromTo(card,
+            { opacity: 0, x: 40 },
+            {
+              opacity: 1, x: 0, duration: 0.65, ease: 'power2.out',
+              scrollTrigger: { trigger: card, start: 'top 75%' }
+            }
+          );
+        });
       }
 
       const footer = document.getElementById('footer-kontakt');
