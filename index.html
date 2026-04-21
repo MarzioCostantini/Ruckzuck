@@ -109,6 +109,23 @@
       background: var(--primary);
     }
 
+    /* ─── SCROLL SMOOTHER ─────────────────────────────────────────── */
+    #smooth-wrapper {
+      overflow: hidden;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    #smooth-content {
+      overflow: visible;
+      width: 100%;
+    }
+
     /* ─── HEADER / NAVIGATION ─────────────────────────────────────── */
     #main-header {
       position: fixed;
@@ -2282,8 +2299,10 @@
     </div>
   </div>
 
-  <!-- ─── HERO ────────────────────────────────────────────────────── -->
-  <section id="hero">
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <!-- ─── HERO ────────────────────────────────────────────────────── -->
+      <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid-lines"></div>
     <div class="hero-content">
@@ -3481,7 +3500,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof ScrollSmoother === 'undefined') return;
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-      ScrollSmoother.create({ smooth: 2, effects: true });
+      ScrollSmoother.create({ smooth: 1.5, effects: true });
 
       const footer = document.getElementById('footer-kontakt');
       const bgText = document.getElementById('footer-bg-text');
@@ -3562,6 +3581,9 @@
       }
     });
   </script>
+
+    </div>
+  </div>
 
 </body>
 
