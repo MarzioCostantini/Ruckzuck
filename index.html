@@ -1997,115 +1997,6 @@
     }
 
 
-    /* ─── PASSWORD OVERLAY ─────────────────────────────────────────── */
-    #pw-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-    }
-
-    #pw-overlay .pw-logo {
-      width: 72px;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #pw-overlay h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin: 0;
-      text-align: center;
-    }
-
-    #pw-overlay p {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin: -12px 0 0;
-      text-align: center;
-    }
-
-    #pw-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    #pw-input {
-      width: 100%;
-      padding: 12px 16px;
-      font-size: 15px;
-      font-family: var(--font-body);
-      border: 1px solid var(--border-mid);
-      border-radius: var(--radius-lg);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    #pw-input:focus {
-      border-color: var(--primary);
-    }
-
-    #pw-input.error {
-      border-color: #ef4444;
-      animation: pw-shake 0.35s ease;
-    }
-
-    @keyframes pw-shake {
-
-      0%,
-      100% {
-        transform: translateX(0);
-      }
-
-      20% {
-        transform: translateX(-6px);
-      }
-
-      60% {
-        transform: translateX(6px);
-      }
-
-      80% {
-        transform: translateX(-3px);
-      }
-    }
-
-    #pw-submit {
-      width: 100%;
-      padding: 12px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: var(--font-head);
-      border: none;
-      border-radius: var(--radius-lg);
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    #pw-submit:hover {
-      background: #0099d6;
-      transform: translateY(-1px);
-    }
-
-    #pw-error {
-      color: #ef4444;
-      font-size: 13px;
-      text-align: center;
-      min-height: 18px;
-    }
-
     /* ─── GOOGLE BEWERTUNGEN ───────────────────────────────────────── */
     #bewertungen {
       background: var(--bg-soft);
@@ -2349,20 +2240,6 @@
 </head>
 
 <body>
-
-  <!-- ─── PASSWORD OVERLAY ───────────────────────────────────────── -->
-  <div id="pw-overlay">
-    <div class="pw-logo">
-      <img src="logo.png" alt="Umzug Ruck-Zuck Logo" style="width:48px;height:48px;object-fit:contain;display:block;" />
-    </div>
-    <h2>Umzug Ruck-Zuck</h2>
-    <p>Bitte Passwort eingeben, um fortzufahren.</p>
-    <form id="pw-form" onsubmit="checkPassword(event)">
-      <input id="pw-input" type="password" placeholder="Passwort" autocomplete="current-password" autofocus />
-      <button id="pw-submit" type="submit">Weiter</button>
-      <div id="pw-error"></div>
-    </form>
-  </div>
 
   <!-- ─── HEADER / NAVIGATION ────────────────────────────────────── -->
   <header id="main-header">
@@ -3584,34 +3461,6 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', resizeCanvas, { passive: true });
-
-    /* ── Password Protection ─────────────────────────────────────── */
-    (function () {
-      const overlay = document.getElementById('pw-overlay');
-      const input = document.getElementById('pw-input');
-      const errEl = document.getElementById('pw-error');
-      const SESSION_KEY = 'rz_auth';
-
-      if (sessionStorage.getItem(SESSION_KEY) === '1') {
-        overlay.style.display = 'none';
-        return;
-      }
-
-      window.checkPassword = function (e) {
-        e.preventDefault();
-        if (input.value === 'ruckzuck') {
-          sessionStorage.setItem(SESSION_KEY, '1');
-          overlay.style.transition = 'opacity 0.4s ease';
-          overlay.style.opacity = '0';
-          setTimeout(() => overlay.style.display = 'none', 400);
-        } else {
-          errEl.textContent = 'Falsches Passwort. Bitte erneut versuchen.';
-          input.classList.add('error');
-          input.value = '';
-          setTimeout(() => input.classList.remove('error'), 500);
-        }
-      };
-    })();
 
     /* ── FAQ Accordion ───────────────────────────────────────────── */
     (function () {
